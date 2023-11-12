@@ -1,12 +1,14 @@
 import React from "react";
 import {
-  Document,
   Page,
+  Document,
   Text,
   View,
   StyleSheet,
   Image,
   Font,
+  Line,
+  Svg,
 } from "@react-pdf/renderer";
 
 // Register font
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
     margin: "10 65",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
   },
   signatureText: {
     textAlign: "center",
@@ -114,8 +117,25 @@ const styles = StyleSheet.create({
   },
   deanSignature: {
     position: "relative",
-    marginTop: 50,
-    marginRight: 50,
+    marginTop: 35,
+    marginLeft: -37.5,
+  },
+  deanBodySection: {
+    margin: "10 65",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  horizontalLine: {
+    margin: "0 auto",
+    width: 450,
+    height: 5,
+  },
+  footerSignatureSection: {
+    margin: "35 15 0 15",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
@@ -127,9 +147,9 @@ interface MyDocumentProps {
 }
 
 const data = {
-  documentId: "8002",
   projectId: "8002",
-  from: "ฝ่ายนิสิตสัมพันธ์",
+  documentId: "0014",
+  from: "ฝ่ายกิจการภายใน",
   date: "25 สิงหาคม 2566",
   to: "รองคณบดี (รศ. ดร.สรรเพชญ ชื้อนิธิไพศาล)",
   itemToRequest: "สถานที่และอุปกรณ์",
@@ -138,6 +158,9 @@ const data = {
     "สร้างความสัมพันธ์อันดีและความสามัคคีระหว่างนิสิตคณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
   activity: "จัดกิจกรรม Blood Day",
   toFooter: "รองคณบดี (ศ. ดร.เกษม ชูจารุกูล)",
+  //
+  headOfVenueStudent: "กฤติน สุวรรณทัต",
+  headOfVenueStaff: "วัชรพงษ์ ทองคำสุจริต",
 };
 
 // Create Document Component
@@ -168,8 +191,8 @@ const MyDocument = () => (
           <Text style={styles.bold}>เรียน</Text> {data.to}
         </Text>
         <Text>
-          <Text style={styles.bold}>สิ่งที่แนบมา</Text>{" "}
-          รายละเอียดการใช้เลือกรายการ
+          <Text style={styles.bold}>สิ่งที่แนบมา</Text> รายละเอียดการใช้
+          {data.itemToRequest}
         </Text>
       </View>
 
@@ -197,7 +220,7 @@ const MyDocument = () => (
         </View>
       </View>
 
-      <View style={styles.bodySection}>
+      <View style={styles.deanBodySection}>
         <Text>
           <Text style={styles.bold}>เรียน</Text> {data.toFooter}
         </Text>
@@ -210,6 +233,24 @@ const MyDocument = () => (
             </Text>
             <Text style={styles.signatureText}>รองคณบดี</Text>
           </View>
+        </View>
+      </View>
+
+      <Svg style={styles.horizontalLine}>
+        <Line x1={0} y1={0} x2={450} y2={0} stroke="#000" strokeWidth="1" />
+      </Svg>
+
+      <View style={styles.footerSignatureSection}>
+        <Text style={{ width: 85 }} />
+        <View style={styles.signatureSection}>
+          <Text style={styles.signatureText}>({data.headOfVenueStudent})</Text>
+          <Text style={styles.signatureText}>รองประธานโครงการฝ่ายสถานที่</Text>
+        </View>
+        <View style={styles.signatureSection}>
+          <Text style={styles.signatureText}>({data.headOfVenueStaff})</Text>
+          <Text style={styles.signatureText}>
+            หัวหน้างานฝ่ายสถานที่และกายภาพ
+          </Text>
         </View>
       </View>
     </Page>

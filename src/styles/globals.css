@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  @page {
+    size: auto;
+    size: A4 portrait;
+    margin: 0 -6cm;
+  }
+
+  html {
+    margin: 0 6cm;
+  }
+}
+
+/* th sarabun font */
+@font-face {
+  font-family: "TH SarabunPSK";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/THSarabunNew.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "TH SarabunPSK";
+  font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/THSarabunNew Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "TH SarabunPSK";
+  font-style: italic;
+  font-weight: normal;
+  src: url("/fonts/THSarabunNew Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "TH SarabunPSK";
+  font-style: italic;
+  font-weight: bold;
+  src: url("/fonts/THSarabunNew BoldItalic.woff2") format("woff2");
+}
